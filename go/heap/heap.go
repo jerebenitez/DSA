@@ -1,6 +1,8 @@
 package heap
 
-func MaxHeapify(A []int, idx int) {
+import "cmp"
+
+func MaxHeapify[T cmp.Ordered](A []T, idx int) {
 	// Go is 0-indexed
 	l := 2 * idx + 1
 	r := 2 * idx + 2
@@ -22,13 +24,13 @@ func MaxHeapify(A []int, idx int) {
 	}
 }
 
-func BuildMaxHeap(A []int) {
+func BuildMaxHeap[T cmp.Ordered](A []T) {
 	for i := (len(A) / 2) - 1; i >= 0; i-- {
 		MaxHeapify(A, i)
 	}
 }
 
-func HeapSort(A []int) {
+func HeapSort[T cmp.Ordered](A []T) {
 	BuildMaxHeap(A)
 
 	for i := len(A) - 1; i >= 0; i-- {
