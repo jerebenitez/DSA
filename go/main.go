@@ -53,4 +53,8 @@ func main() {
 	A := []int{15, 24, 6, 8, 99, 106, 2, 392, 94}
 	quicksort.Quicksort(A, 0, len(A) - 1)
 	fmt.Printf("Sorted: %v\n", A)
+
+	B := []int{15, 24, 6, 8, 99, 106, 2, 392, 94}
+	quicksort.RandomQuicksort(B, 0, len(B) - 1)
+	fmt.Printf("Sorted: %v\n", B)
 }
