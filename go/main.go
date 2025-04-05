@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import ( 
+	"fmt"
+	"os"
+)
 import "github.com/jerebenitez/DSA/go/heap"
 
 func main() {
@@ -14,4 +17,33 @@ func main() {
 
 	heap.HeapSort(create)
 	fmt.Printf("Sorted: %v\n", create)
+
+	/***********************/
+	// Build a priority queue for strings
+	queue := make([]heap.Element[string], 0)
+
+	// Create an element with a priority of 1
+	// and insert it into queue
+	el1 := heap.Element[string]{ 
+		Key: 1,
+		Object: "test",
+	}
+	var err error
+	if queue, err = heap.Insert(queue, el1); err != nil {
+		fmt.Fprintf(os.Stderr, err.Error())
+		return
+	}
+	fmt.Println(queue)
+
+	// Create an element with a higher priority
+	// and insert it into queue
+	el2 := heap.Element[string]{
+		Key: 10,
+		Object: "higher",
+	}
+	if queue, err = heap.Insert(queue, el2); err != nil {
+		fmt.Fprintf(os.Stderr, err.Error())
+		return
+	}
+	fmt.Println(queue)
 }
