@@ -1,10 +1,12 @@
 package main
 
-import ( 
+import (
 	"fmt"
 	"os"
+
+	"github.com/jerebenitez/DSA/go/heap"
+	"github.com/jerebenitez/DSA/go/quicksort"
 )
-import "github.com/jerebenitez/DSA/go/heap"
 
 func main() {
 	test := []int{16, 4, 10, 14, 7, 9, 3, 2, 8, 1}
@@ -46,4 +48,9 @@ func main() {
 		return
 	}
 	fmt.Println(queue)
+
+	/**********************/
+	A := []int{15, 24, 6, 8, 99, 106, 2, 392, 94}
+	quicksort.Quicksort(A, 0, len(A) - 1)
+	fmt.Printf("Sorted: %v\n", A)
 }
