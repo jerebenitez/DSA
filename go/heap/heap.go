@@ -3,6 +3,10 @@ package heap
 import "cmp"
 
 func MaxHeapify[T cmp.Ordered](A []T, idx int) {
+	if len(A) < 2 {
+		return
+	}
+
 	// Go is 0-indexed
 	l := 2 * idx + 1
 	r := 2 * idx + 2
