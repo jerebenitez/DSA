@@ -6,6 +6,7 @@ import (
 
 	"github.com/jerebenitez/DSA/go/heap"
 	"github.com/jerebenitez/DSA/go/quicksort"
+	"github.com/jerebenitez/DSA/go/sort"
 )
 
 func main() {
@@ -54,7 +55,15 @@ func main() {
 	quicksort.Quicksort(A, 0, len(A) - 1)
 	fmt.Printf("Sorted: %v\n", A)
 
+	/*
 	B := []int{15, 24, 6, 8, 99, 106, 2, 392, 94}
 	quicksort.RandomQuicksort(B, 0, len(B) - 1)
 	fmt.Printf("Sorted: %v\n", B)
+	*/
+
+	/**********************/
+	A = []int{15, 24, 6, 8, 99, 106, 2, 392, 94}
+	result := sort.CountingSort(A, 392) // do i need to pass this by hand? 
+	fmt.Println("Counting sorted: ", result)
+
 }
