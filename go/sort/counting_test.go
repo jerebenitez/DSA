@@ -1,6 +1,7 @@
 package sort
 
 import (
+	"fmt"
 	"slices"
 	"sort"
 	"testing"
@@ -19,11 +20,14 @@ func TestCountingSort(t *testing.T) {
 	}
 
 	for _, tc := range testcases {
-		sorted := CountingSort(tc.in)
+		testname := fmt.Sprintf("%v", tc.in)
+		t.Run(testname, func(t *testing.T) {
+			sorted := CountingSort(tc.in)
 
-		if !slices.Equal(sorted, tc.want) {
-			t.Errorf("Sort: %v, want %v", sorted, tc.want)
-		}
+			if !slices.Equal(sorted, tc.want) {
+				t.Errorf("Sort: %v, want %v", sorted, tc.want)
+			}
+		})
 	}
 }
 
