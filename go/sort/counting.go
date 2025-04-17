@@ -1,17 +1,36 @@
 package sort
 
-func CountingSort(A []int, k int) (B []int) {
+import (
+	"math"
+	"slices"
+)
+
+func CountingSort(A []int) (B []int) {
 	n := len(A)
 
 	if n == 0 {
 		return
 	}
 
+	maxValue := slices.Max(A)
+	minValue := slices.Min(A)
+
+	offset := 0
+	if minValue < 0 {
+		offset = int(math.Abs(float64(minValue)))
+	}
+
+	k := maxValue
+	if minValue < 0 {
+		k += offset
+	}
+
+
 	B = make([]int, n)
 	C := make([]int, k + 1) // temporary storage, zero initialized
 
 	for _, val := range A {
-		C[val]++ // count number of items == A[j]
+		C[val + offset]++ // count number of items == A[j]
 	}
 
 	for i := 1; i <= k; i++ {
@@ -19,8 +38,8 @@ func CountingSort(A []int, k int) (B []int) {
 	}
 
 	for j := n - 1; j >= 0; j-- {
-		B[C[A[j]] - 1] = A[j]
-		C[A[j]]--  // handle duplicates
+		B[C[A[j] + offset] - 1] = A[j]
+		C[A[j] + offset]--  // handle duplicates
 	}
 
 	return B
