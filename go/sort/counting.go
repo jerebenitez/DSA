@@ -1,9 +1,6 @@
 package sort
 
-import (
-	"math"
-	"slices"
-)
+import "slices"
 
 func CountingSort(A []int) (B []int) {
 	n := len(A)
@@ -17,7 +14,7 @@ func CountingSort(A []int) (B []int) {
 
 	offset := 0
 	if minValue < 0 {
-		offset = int(math.Abs(float64(minValue)))
+		offset = -minValue
 	}
 
 	k := maxValue
