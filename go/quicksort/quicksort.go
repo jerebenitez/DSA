@@ -28,15 +28,19 @@ func partition[T cmp.Ordered](A []T, p int, r int) (int, error) {
 }
 
 func randomPartition[T cmp.Ordered](A []T, p int, r int) (int, error) {
-	i :=  p + rand.Intn(r)
+	i :=  rand.Intn(r - p) + p
 	A[i], A[r] = A[r], A[i]
 
 	return partition(A, p, r)
 }
 
 func Quicksort[T cmp.Ordered](A []T, p int, r int) {
-	if p >= len(A) || r >= len(A) {
-		log.Fatal("index out of range")
+	if r >= len(A) {
+		log.Fatalf("index out of range: p=%d, r=%d", p, r)
+	}
+
+	if len(A) < 2 {
+		return
 	}
 
 	if p < r {
@@ -51,7 +55,7 @@ func Quicksort[T cmp.Ordered](A []T, p int, r int) {
 
 
 func RandomQuicksort[T cmp.Ordered](A []T, p int, r int) {
-	if p >= len(A) || r >= len(A) {
+	if r >= len(A) {
 		log.Fatal("index out of range")
 	}
 
