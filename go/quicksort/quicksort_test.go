@@ -8,11 +8,11 @@ import (
 )
 
 func FuzzQuicksort(f *testing.F) {
-
+	
 	f.Fuzz(func(t *testing.T, data []byte) {
 		fz := fuzz.NewConsumer(data)
-        var targetSlice []int
-        if err := fz.CreateSlice(&targetSlice); err != nil {
+		var targetSlice []int
+		if err := fz.CreateSlice(&targetSlice); err != nil {
 			t.Skip()
 		}
 
