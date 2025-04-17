@@ -61,7 +61,7 @@ func main() {
 
 	/**********************/
 	A = []int{15, 24, 6, 8, 99, 106, 2, 392, 94}
-	result := sort.CountingSort(A, 392) // do i need to pass this by hand? 
+	result := sort.CountingSort(A) // do i need to pass this by hand? 
 	fmt.Println("Counting sorted: ", result)
 
 }

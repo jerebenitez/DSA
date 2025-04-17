@@ -2,7 +2,10 @@ package sort
 
 import (
 	"slices"
+	"sort"
 	"testing"
+
+	fuzz "github.com/AdaLogics/go-fuzz-headers"
 )
 
 func TestCountingSort(t *testing.T) {
@@ -22,4 +25,27 @@ func TestCountingSort(t *testing.T) {
 			t.Errorf("Sort: %v, want %v", sorted, tc.want)
 		}
 	}
+}
+
+func FuzzCountingSort(f *testing.F) {
+	f.Fuzz(func(t *testing.T, data []byte) {
+		fz := fuzz.NewConsumer(data)
+
+		var targetSlice []int
+		if err := fz.CreateSlice(&targetSlice); err != nil {
+			t.Skip()
+		}
+		
+		sorted := CountingSort(targetSlice)
+
+		// check if sorted
+		if !sort.IntsAreSorted(sorted) {
+			t.Errorf("not sorted: %v", sorted)
+		}
+
+		// check for length consistency
+		if len(targetSlice) != len(sorted) {
+			t.Errorf("length changed: before %d, after %d", len(sorted), len(targetSlice))
+		}
+	})
 }
