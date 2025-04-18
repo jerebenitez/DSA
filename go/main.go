@@ -64,4 +64,10 @@ func main() {
 	result := sort.CountingSort(A)
 	fmt.Println("Counting sorted: ", result)
 
+	/**********************/
+	//A = []int{15, 24, 6, 8, 99, 106, 2, 392, 94}
+	A = []int{0, 0, -1}
+	result = sort.RadixSort(A)
+	fmt.Println("Radix sorted: ", result)
+
 }
